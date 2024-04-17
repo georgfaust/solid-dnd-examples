@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+    .draggable {
+        @apply cursor-move  flex items-center justify-center rounded-full px-3 min-w-32 h-14 bg-blue-500 text-white font-bold;
+    }
+
+    .draggable-container {
+        @apply flex items-center justify-center gap-2 rounded-full px-3 min-w-32 h-14 bg-blue-500 text-white font-bold;
+    }
+
+    .droppable {
+        @apply flex flex-col gap-4 items-center justify-center w-96 h-80 border border-gray-200 rounded-md p-4;
+    }
+}
