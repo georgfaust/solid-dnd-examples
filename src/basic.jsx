@@ -23,7 +23,7 @@ const Droppable = (props) => {
   return (
     <div
       use:droppable
-      class="droppable"
+      class="droppable min-h-60"
       classList={{ "bg-blue-100": droppable.isActiveDroppable }}
     >
       {props.children}

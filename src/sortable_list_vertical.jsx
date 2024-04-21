@@ -62,7 +62,7 @@ export const DndExample = () => {
                 </div>
             </SortableProvider>
             <DragOverlay>
-                <div class="draggable">OVERLAY {activeItem()}</div>
+                <div class="draggable">{activeItem()}</div>
             </DragOverlay>
         </DragDropProvider>
     );

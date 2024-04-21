@@ -27,7 +27,7 @@ const Droppable = () => {
     return (
         <div
             ref={droppable.ref}
-            class="droppable"
+            class="droppable min-h-60"
             classList={{ "!droppable-accept": droppable.isActiveDroppable }}
         >
             Droppable.

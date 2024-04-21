@@ -26,7 +26,7 @@ const Droppable = (props) => {
   return (
     <div
       ref={droppable.ref}
-      class="droppable"
+      class="droppable min-h-60"
       classList={{ "bg-blue-100": droppable.isActiveDroppable }}
     >
       {props.children}

@@ -2,20 +2,21 @@ import {
   DragDropProvider,
   DragDropSensors,
   DragOverlay,
-  createDraggable,
+  SortableProvider,
+  createSortable,
   createDroppable,
   closestCenter,
 } from "@thisbeyond/solid-dnd";
 import { batch, createSignal, For } from "solid-js";
 import { createStore } from "solid-js/store";
 
-const Draggable = (props) => {
-  const draggable = createDraggable(props.item);
+const Sortable = (props) => {
+  const sortable = createSortable(props.item);
   return (
     <div
-      use:draggable
-      class="flex items-center justify-center p-4 bg-sky-200"
-      classList={{ "opacity-25": draggable.isActiveDraggable }}
+      use:sortable
+      class="draggable"
+      classList={{ "opacity-25": sortable.isActiveDraggable }}
     >
       {props.item}
     </div>
@@ -25,8 +26,10 @@ const Draggable = (props) => {
 const Column = (props) => {
   const droppable = createDroppable(props.id);
   return (
-    <div use:droppable class="flex flex-col gap-4 bg-sky-100 w-40">
-      <For each={props.items}>{(item) => <Draggable item={item} />}</For>
+    <div use:droppable class="flex flex-col gap-4 border border-gray-300 p-6 min-w-44">
+      <SortableProvider ids={props.items}>
+        <For each={props.items}>{(item) => <Sortable item={item} />}</For>
+      </SortableProvider>
     </div>
   );
 };
@@ -126,20 +129,21 @@ export const DndExample = () => {
   };
 
   return (
-    <div class="flex flex-col flex-1 mt-5 self-stretch">
+    <div class="flex flex-col flex-1 mt-16 items-center">
       <DragDropProvider
         onDragOver={onDragOver}
         onDragEnd={onDragEnd}
         collisionDetector={closestContainerOrItem}
       >
         <DragDropSensors />
-        <div class="flex flex-row gap-4 bg-sky-50">
+        multiple_lists
+        <div class="flex flex-row gap-8 p-4">
           <For each={containerIds()}>
             {(key) => <Column id={key} items={containers[key]} />}
           </For>
         </div>
         <DragOverlay>
-          {(draggable) => <div class="flex items-center justify-center p-4 bg-red-300">{draggable.id}</div>}
+          {(draggable) => <div class="draggable">{draggable.id}</div>}
         </DragOverlay>
       </DragDropProvider>
     </div>
