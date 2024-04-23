@@ -57,12 +57,12 @@ export const DndExample = () => {
             {/* <DragDropDebugger /> */}
             <DragDropSensors />
             <SortableProvider ids={ids()}>
-                <div class="flex flex-col w-80 gap-4">
+                <div class="flex flex-col w-80 gap-4 mt-40 rotate-[90deg] items-start">
                     <For each={items()}>{(item) => <Sortable item={item} />}</For>
                 </div>
             </SortableProvider>
             <DragOverlay>
-                <div class="draggable">{activeItem()}</div>
+                <div class="draggable rotate-[90deg]">{activeItem()}</div>
             </DragOverlay>
         </DragDropProvider>
     );
